@@ -17,6 +17,8 @@ var monoSynth = new Tone.MonoSynth({
 }).toMaster();
 
 var monoSynth = new Tone.MonoSynth().toMaster();
+var major_generator = 5;
+var minor_generator = 3;
 
 //set initial volume
 Tone.Master.volume.rampTo(-10, 0.05);
@@ -31,18 +33,53 @@ nx.onload = function() {
   /// BUTTON ///
   midiStatus.on("*", function(data){
     playPattern();
-
   });
+
+  ///  SLIDERS  ///
+  sliderMajor.on("*", function(data){
+    major_generator = Math.trunc(data.value);
+	// console.log("Major generator is", data.value);
+  });
+  sliderMinor.on("*", function(data){
+    minor_generator = Math.trunc(data.value);
+	//console.log("Minor generator is", minor_generator);
+  });
+
 
 };
 
 var initControls = function(){
   midiStatus.mode = "impulse";
+  ///  SLIDERS  ///
+  sliderMajor.set({value:5});
+  sliderMinor.set({value:3});
 };
 
-function resultant() {
-	var major_generator = 5;
-	var minor_generator = 3;
+// *******************************************************
+// 
+//  FUNCTION: resultant
+// 
+//  USAGE: resultant(major_generator, minor_generator);
+// 
+//  DESCRIPTION:
+//     This function will generate a Schillinger resultant
+//     based on two integers for the major generator and minor
+//     generator and return this as an array to the calling function.
+// 
+// 
+//  INPUTS:
+//     major_generator - First generator for the resultant
+// 
+//     minor_generator - Second generator for the resultant
+// 
+//  OUTPUTS:
+//     resultant - Sequence of numbers returned as an array
+// 
+// *******************************************************
+
+function resultant(major_generator, minor_generator) {
+	// var major_generator = 7;
+	// var minor_generator = 3;
 
 	var total_counts   = major_generator * minor_generator;
 	var result_counter = 0;
@@ -76,7 +113,7 @@ function resultant() {
 
 var playPattern = function(){
 
-    var test = resultant();
+    var test = resultant(major_generator, minor_generator);
     var listOfObjects = [];
     var i = 0;
     // Create an array of events

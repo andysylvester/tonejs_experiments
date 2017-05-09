@@ -15,7 +15,26 @@
 
 <body>
     <div class="container">
-       <canvas nx="button" label="Play" id="midiStatus"></canvas>
+       <div>
+           <center><h2>Tone.js Experiment #001</h2></center><br><br>
+     	   This application uses the <a href="http://tonejs.github.io/">Tone.js</a> Javascript library to play pitches using the Web Audio API. The user
+		   interface uses the <a href="http://nexusosc.com/">NexusUI</a> Javascript library.<br><br>
+		   When you click on the "Play" button, a series of tones will play. The pitches are determined by calculating
+		   a Schillinger resultant (see <a href="https://www.perl.com/pub/2007/08/09/making-perl-modules.html">this article</a> for more 
+		   background on resultants).<br><br>
+		   A resultant is calculated by using two numbers (major generator and minor generator). The major generator should always be greater
+		   than the minor generator.<br><br>
+		   You can change the major and minor generator values using the sliders (the value is set to the integer portion of the slider value). For
+		   example, 5.3 would be 5. Changing the slider values will change the number of pitches and their value.<br><br>
+		   To hear the sequence again, refresh the page, then click the button again.<br><br>
+		   To see the numbers in the resultant array, open the Javascript console. They will be printed after the "Play" button is pushed.<br><br>
+		   Source for this app is at <a href="https://github.com/andysylvester/tonejs_experiments">Github</a><br><br>
+	   </div>
+	   <div>
+           <canvas nx="button" label="Play" id="midiStatus"></canvas>
+           <canvas nx="slider" min="2" max="10" label="Maj" id="sliderMajor"></canvas>
+           <canvas nx="slider" min="1" max="8" label="Min" id="sliderMinor"></canvas>
+	   </div>
     </div>
 </body>
 
